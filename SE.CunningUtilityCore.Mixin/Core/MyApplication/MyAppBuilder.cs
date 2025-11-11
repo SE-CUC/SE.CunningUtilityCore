@@ -18,6 +18,7 @@ namespace IngameScript
             _features = features;
             Services = new MyAppServices();
             Services.AddSingleton(_program.GridTerminalSystem);
+            Services.AddSingleton(_program.Echo);
         }
 
         public static IMyAppBuilder Create(MyGridProgram program, AutoConfigFeatures features = AutoConfigFeatures.All)
@@ -52,6 +53,8 @@ namespace IngameScript
             services.AddSingleton<ILogger>(compositeLogger);
 
             builder.OnError((ex, s) => s.GetService<ILogger>()?.Error(ex, "An unhandled exception occurred in the main loop."));
+            echo("Logger, config, DI was succesfully inited");
+            surfaceLogger.Info("Logger, config, DI was succesfully inited");
         }
 
         public IMyApp Build()

@@ -8,7 +8,6 @@ namespace IngameScript
     {
         private readonly LoggerConfig _config;
         private readonly IMyTextSurface _surface;
-        private readonly StringBuilder _logCache = new StringBuilder();
 
         public SurfaceLogger(LoggerConfig config, IMyTextSurface surface)
         {
@@ -22,12 +21,7 @@ namespace IngameScript
 
             var message = $"[{level.ToString().ToUpper()}] {text}\n";
 
-            // Simple cache trimming
-            if (_logCache.Length > 10000)
-            {
-                _logCache.Remove(10000, _logCache.Length - 10000);
-            }
-            _surface.WriteText(_logCache);
+            _surface.WriteText(message);
         }
 
         public void Debug(string text) => Write(LogLevel.Debug, text);
