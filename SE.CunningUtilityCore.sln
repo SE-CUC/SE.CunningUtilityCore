@@ -9,6 +9,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SE.CunningUtilityCore.Mixin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NonGameDebugLaunch", "NonGameDebugLaunch\NonGameDebugLaunch.csproj", "{C35EAC32-348D-409D-9F3E-59BEC1795B19}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SE.SEApplication.Mixin", "..\SE.SEApplication\SE.SEApplication.Mixin\SE.SEApplication.Mixin.shproj", "{60062648-C770-427E-8C66-95F0D8761E57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,7 @@ Global
 		SolutionGuid = {E1E2929D-078A-43BC-B9F3-68D378196090}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\SE.SEApplication\SE.SEApplication.Mixin\SE.SEApplication.Mixin.projitems*{60062648-c770-427e-8c66-95f0d8761e57}*SharedItemsImports = 13
 		SE.CunningUtilityCore.Mixin\SE.CunningUtilityCore.Mixin.projitems*{8a3cdcc5-4b55-4d87-a415-698a0e1ff06f}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal
