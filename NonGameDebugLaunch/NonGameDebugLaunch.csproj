@@ -79,5 +79,9 @@
   <ItemGroup>
     <None Include="Dlls\VRage.Math.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="..\SE.CunningUtilityCore.Mixin\SE.CunningUtilityCore.Mixin.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

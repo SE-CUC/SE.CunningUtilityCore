@@ -1,4 +1,5 @@
-﻿using Sandbox.Game.Entities.Blocks;
+﻿using IngameScript;
+using Sandbox.Game.Entities.Blocks;
 using Sandbox.ModAPI;
 using Sandbox.ModAPI.Ingame;
 using System;
@@ -52,19 +53,29 @@ namespace NonGameDebugLaunch
 
     class MyConsoleTextSurface : MyTextPanel, Sandbox.ModAPI.Ingame.IMyTextSurface, Sandbox.ModAPI.IMyTextSurface, ILogger
     {
-        public void Error(string message)
+        public void Debug(string text)
         {
-            Console.WriteLine($"ERROR: {message}");
+            Console.WriteLine("[DEBUG] " + text);
         }
 
-        public void Info(string message)
+        public void Error(string text)
         {
-            Console.WriteLine($"INFO: {message}");
+            Console.WriteLine("[ERROR] " + text);
         }
 
-        public void Warn(string message)
+        public void Error(Exception e, string text = "")
         {
-            Console.WriteLine($"WARN: {message}");
+            Console.WriteLine("[ERROR] " + text + " Exception: " + e.ToString());
+        }
+
+        public void Info(string text)
+        {
+            Console.WriteLine("[INFO] " + text);
+        }
+
+        public void Write(LogLevel level, string text)
+        {
+            Console.WriteLine("[" + level.ToString().ToUpper() + "] " + text);
         }
 
         public bool WriteText(string value, bool append = false)

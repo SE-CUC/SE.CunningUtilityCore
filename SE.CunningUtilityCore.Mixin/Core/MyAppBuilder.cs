@@ -1,10 +1,9 @@
 ﻿using Sandbox.ModAPI.Ingame;
 using System;
 using System.Collections.Generic;
-using VRage.Game.ModAPI.Ingame.Utilities;
 
 namespace IngameScript
-{
+ {
     public partial class MyAppBuilder : IMyAppBuilder
     {
         public IMyAppServices Services { get; private set; }

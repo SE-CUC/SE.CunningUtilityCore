@@ -33,7 +33,8 @@ Global
 		SolutionGuid = {E1E2929D-078A-43BC-B9F3-68D378196090}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		..\SE.SEApplication\SE.SEApplication.Mixin\SE.SEApplication.Mixin.projitems*{60062648-c770-427e-8c66-95f0d8761e57}*SharedItemsImports = 13
+		SE.CunningUtilityCore.Mixin\SE.CunningUtilityCore.Mixin.projitems*{572f20f5-0697-4b98-84a3-eba3ab5f95ce}*SharedItemsImports = 5
 		SE.CunningUtilityCore.Mixin\SE.CunningUtilityCore.Mixin.projitems*{8a3cdcc5-4b55-4d87-a415-698a0e1ff06f}*SharedItemsImports = 13
+		SE.CunningUtilityCore.Mixin\SE.CunningUtilityCore.Mixin.projitems*{c35eac32-348d-409d-9f3e-59bec1795b19}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal
