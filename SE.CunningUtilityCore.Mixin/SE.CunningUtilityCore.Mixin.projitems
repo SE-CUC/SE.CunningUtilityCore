@@ -9,6 +9,12 @@
     <Import_RootNamespace>IngameScript</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Class1.cs" />
+    <Folder Include="$(MSBuildThisFileDirectory)Core\Logging\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Core\Configuration\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Commands\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Core\MyApplication\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Core\DI\" />
+    <Folder Include="$(MSBuildThisFileDirectory)IGC\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Schedule\" />
   </ItemGroup>
 </Project>
