@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SE.CunningUtilityCore", "SE
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SE.CunningUtilityCore.Mixin", "SE.CunningUtilityCore.Mixin\SE.CunningUtilityCore.Mixin.shproj", "{8A3CDCC5-4B55-4D87-A415-698A0E1FF06F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NonGameDebugLaunch", "NonGameDebugLaunch\NonGameDebugLaunch.csproj", "{C35EAC32-348D-409D-9F3E-59BEC1795B19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -17,6 +19,10 @@ Global
 		{572F20F5-0697-4B98-84A3-EBA3AB5F95CE}.Debug|x64.Build.0 = Debug|x64
 		{572F20F5-0697-4B98-84A3-EBA3AB5F95CE}.Release|x64.ActiveCfg = Release|x64
 		{572F20F5-0697-4B98-84A3-EBA3AB5F95CE}.Release|x64.Build.0 = Release|x64
+		{C35EAC32-348D-409D-9F3E-59BEC1795B19}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C35EAC32-348D-409D-9F3E-59BEC1795B19}.Debug|x64.Build.0 = Debug|Any CPU
+		{C35EAC32-348D-409D-9F3E-59BEC1795B19}.Release|x64.ActiveCfg = Release|Any CPU
+		{C35EAC32-348D-409D-9F3E-59BEC1795B19}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

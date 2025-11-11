@@ -22,22 +22,21 @@ namespace IngameScript
     {
         public IMyAppServices Services { get; private set; } = new IMyAppServices();
 
-        private readonly Program _program;
+        private readonly IMyGridTerminalSystem _gridTerminalSystem;
 
         private readonly AutoConfigFeatures _features;
 
-        public MyAppBuilder(Program program)
+        public MyAppBuilder(IMyGridTerminalSystem gridTerminalSystem)
         {
-            _program = program;
-            Services.AddSingleton<MyGridProgram>(program);
-            Services.AddSingleton<Program>(program);
+            _gridTerminalSystem = gridTerminalSystem;
+            Services.AddSingleton<MyGridProgram>(_gridTerminalSystem);
         }
 
-        public static IMyAppBuilder Create(Program program, AutoConfigFeatures features = AutoConfigFeatures.All)
+        public static IMyAppBuilder Create(IMyGridTerminalSystem gridTerminalSystem, AutoConfigFeatures features = AutoConfigFeatures.All)
         {
-            var builder = new MyAppBuilder(program);
+            var builder = new MyAppBuilder(gridTerminalSystem);
 
-            PreInitSystem(builder);          
+            PreInitSystem(builder);    
 
             return builder;
         }
