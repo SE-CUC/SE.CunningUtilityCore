@@ -1,9 +1,15 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace IngameScript
+namespace IngameScript.Core.DI
 {
-    public class MyAppServices : IMyAppServices
+    public interface IInjector
+    {
+        void AddSingleton<TService>(TService implementation) where TService : class;
+        TService GetService<TService>() where TService : class;
+    }
+
+    public class Injector : IInjector
     {
         private readonly Dictionary<Type, object> _services = new Dictionary<Type, object>();
 

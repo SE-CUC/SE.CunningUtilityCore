@@ -1,29 +1,34 @@
-﻿using Sandbox.ModAPI.Ingame;
+using Sandbox.ModAPI.Ingame;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using IngameScript.Core.DI;
+using IngameScript.Core.Scheduler;
 
 namespace IngameScript
 {
     public class MyApp : IMyApp
     {
-        private readonly IMyAppServices _services;
+        private readonly IInjector _injector;
+        private readonly IScheduler _scheduler;
 
-        private readonly List<Action<string, UpdateType, IMyAppServices>> _onFirstMainTriggerStart;
-        private readonly List<Action<string, UpdateType, IMyAppServices>> _onFirstMainTriggerEnd;
-        private readonly List<Action<IMyAppServices>> _onSave;
-        private readonly List<Action<Exception, IMyAppServices>> _onError;
-        private readonly List<Action<string, UpdateType, IMyAppServices>> _onTerminalAction;
+        private readonly List<Action<string, UpdateType, IInjector>> _onFirstMainTriggerStart;
+        private readonly List<Action<string, UpdateType, IInjector>> _onFirstMainTriggerEnd;
+        private readonly List<Action<IInjector>> _onSave;
+        private readonly List<Action<Exception, IInjector>> _onError;
+        private readonly List<Action<string, UpdateType, IInjector>> _onTerminalAction;
         private bool _isFirstMainTrigger = true;
 
         public MyApp(
-            IMyAppServices services,
-            List<Action<string, UpdateType, IMyAppServices>> onFirstMainTriggerStart,
-            List<Action<string, UpdateType, IMyAppServices>> onFirstMainTriggerEnd,
-            List<Action<IMyAppServices>> onSave,
-            List<Action<Exception, IMyAppServices>> onError,
-            List<Action<string, UpdateType, IMyAppServices>> onTerminalAction)
+            IInjector injector,
+            List<Action<string, UpdateType, IInjector>> onFirstMainTriggerStart,
+            List<Action<string, UpdateType, IInjector>> onFirstMainTriggerEnd,
+            List<Action<IInjector>> onSave,
+            List<Action<Exception, IInjector>> onError,
+            List<Action<string, UpdateType, IInjector>> onTerminalAction)
         {
-            _services = services;
+            _injector = injector;
+            _scheduler = _injector.GetService<IScheduler>();
             _onFirstMainTriggerStart = onFirstMainTriggerStart;
             _onFirstMainTriggerEnd = onFirstMainTriggerEnd;
             _onSave = onSave;
@@ -37,23 +42,37 @@ namespace IngameScript
             {
                 if (_isFirstMainTrigger)
                 {
-                    _onFirstMainTriggerStart.ForEach(action => action(argument, updateSource, _services));
+                    for (int i = 0; i < _onFirstMainTriggerStart.Count; i++)
+                    {
+                        _onFirstMainTriggerStart[i](argument, updateSource, _injector);
+                    }
                 }
 
                 if (updateSource.HasFlag(UpdateType.Terminal) || updateSource.HasFlag(UpdateType.Trigger))
                 {
-                    _onTerminalAction.ForEach(action => action(argument, updateSource, _services));
+                    for (int i = 0; i < _onTerminalAction.Count; i++)
+                    {
+                        _onTerminalAction[i](argument, updateSource, _injector);
+                    }
                 }
+
+                _scheduler.Update();
 
                 if (_isFirstMainTrigger)
                 {
-                    _onFirstMainTriggerEnd.ForEach(action => action(argument, updateSource, _services));
+                    for (int i = 0; i < _onFirstMainTriggerEnd.Count; i++)
+                    {
+                        _onFirstMainTriggerEnd[i](argument, updateSource, _injector);
+                    }
                     _isFirstMainTrigger = false;
                 }
             }
             catch (Exception ex)
             {
-                _onError.ForEach(action => action(ex, _services));
+                for (int i = 0; i < _onError.Count; i++)
+                {
+                    _onError[i](ex, _injector);
+                }
             }
         }
 
@@ -61,11 +80,17 @@ namespace IngameScript
         {
             try
             {
-                _onSave.ForEach(action => action(_services));
+                for (int i = 0; i < _onSave.Count; i++)
+                {
+                    _onSave[i](_injector);
+                }
             }
             catch (Exception ex)
             {
-                _onError.ForEach(action => action(ex, _services));
+                for (int i = 0; i < _onError.Count; i++)
+                {
+                    _onError[i](ex, _injector);
+                }
             }
         }
     }

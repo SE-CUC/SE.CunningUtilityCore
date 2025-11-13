@@ -1,17 +1,18 @@
 ﻿using System;
+using IngameScript.Core.DI;
 
 namespace IngameScript
 {
     public interface IMyAppBuilder
     {
-        IMyAppServices Services { get; }
-        IMyAppBuilder BeforeBuild(Action<IMyAppServices> action);
-        IMyAppBuilder AfterBuild(Action<IMyAppServices> action);
-        IMyAppBuilder OnFirstMainTriggerStart(Action<string, Sandbox.ModAPI.Ingame.UpdateType, IMyAppServices> action);
-        IMyAppBuilder OnFirstMainTriggerEnd(Action<string, Sandbox.ModAPI.Ingame.UpdateType, IMyAppServices> action);
-        IMyAppBuilder OnSave(Action<IMyAppServices> action);
-        IMyAppBuilder OnError(Action<Exception, IMyAppServices> action);
-        IMyAppBuilder OnTerminalAction(Action<string, Sandbox.ModAPI.Ingame.UpdateType, IMyAppServices> action);
+        IInjector Injector { get; }
+        IMyAppBuilder BeforeBuild(Action<IInjector> action);
+        IMyAppBuilder AfterBuild(Action<IInjector> action);
+        IMyAppBuilder OnFirstMainTriggerStart(Action<string, Sandbox.ModAPI.Ingame.UpdateType, IInjector> action);
+        IMyAppBuilder OnFirstMainTriggerEnd(Action<string, Sandbox.ModAPI.Ingame.UpdateType, IInjector> action);
+        IMyAppBuilder OnSave(Action<IInjector> action);
+        IMyAppBuilder OnError(Action<Exception, IInjector> action);
+        IMyAppBuilder OnTerminalAction(Action<string, Sandbox.ModAPI.Ingame.UpdateType, IInjector> action);
         IMyApp Build();
     }
 }

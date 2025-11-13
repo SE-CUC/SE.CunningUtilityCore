@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>6</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>/app/SE.CunningUtilityCore.Tests/bin/Debug/net472/nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="SE.CunningUtilityCore.Tests">
+      <HintPath>/app/SE.CunningUtilityCore.Tests/bin/Debug/net472/SE.CunningUtilityCore.Tests.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
