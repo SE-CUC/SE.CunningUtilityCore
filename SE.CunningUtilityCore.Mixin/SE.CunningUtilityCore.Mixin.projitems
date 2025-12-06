@@ -11,6 +11,7 @@
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Core\Configuration\" />
     <Folder Include="$(MSBuildThisFileDirectory)Core\DI\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Core\Command\" />
     <Folder Include="$(MSBuildThisFileDirectory)IGC\" />
     <Folder Include="$(MSBuildThisFileDirectory)Schedule\" />
   </ItemGroup>
