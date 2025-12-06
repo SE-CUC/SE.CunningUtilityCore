@@ -28,4 +28,5 @@
       <HintPath>..\NonGameDebugLaunch\Dlls\Sandbox.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <Import Project="..\SE.CunningUtilityCore.Mixin\SE.CunningUtilityCore.Mixin.projitems" Label="Shared" />
 </Project>

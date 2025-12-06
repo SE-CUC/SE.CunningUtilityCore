@@ -9,12 +9,31 @@
     <Import_RootNamespace>IngameScript</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Core\Logging\" />
     <Folder Include="$(MSBuildThisFileDirectory)Core\Configuration\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Commands\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Core\MyApplication\" />
     <Folder Include="$(MSBuildThisFileDirectory)Core\DI\" />
     <Folder Include="$(MSBuildThisFileDirectory)IGC\" />
     <Folder Include="$(MSBuildThisFileDirectory)Schedule\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Logging\CompositeLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Logging\ILogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Logging\LoggerConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Logging\LogLevel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Logging\SurfaceLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\MyApplication\AutoConfigFeatures.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\MyApplication\IMyApp.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\MyApplication\IMyAppBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\MyApplication\IMyAppServices.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\MyApplication\MyApp.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\MyApplication\MyAppBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\MyApplication\MyAppServices.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IScheduler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IWaitService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scheduler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TaskPriority.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WaitService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)README.md" />
   </ItemGroup>
 </Project>

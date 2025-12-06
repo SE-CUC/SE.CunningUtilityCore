@@ -32,6 +32,7 @@ namespace NonGameDebugLaunch
 
             //testClass = new TestClass(logger, myGridProgram, surface);
             //testClass.DoSomething();
+            logger.WriteText("Press Enter to exit...");
 
             Console.ReadLine();
         }
