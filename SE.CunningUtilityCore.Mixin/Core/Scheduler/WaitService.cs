@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using Sandbox.ModAPI.Ingame;
 
-namespace IngameScript.Core.Scheduler
+namespace IngameScript
 {
     public class WaitService : IWaitService
     {

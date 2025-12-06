@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace IngameScript.Core.DI
+namespace IngameScript
 {
     public interface IInjector
     {

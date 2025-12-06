@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 
-namespace IngameScript.Core.Scheduler
+namespace IngameScript
 {
     public interface IWaitService
     {

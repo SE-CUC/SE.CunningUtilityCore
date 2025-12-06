@@ -3,43 +3,46 @@ using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
 
-public class TestRunner
+namespace IngameScript
 {
-    public static void Main(string[] args)
+    public class TestRunner
     {
-        var assemblyPath = args.Length > 0 ? args[0] : "../SE.CunningUtilityCore.Tests/bin/Debug/SE.CunningUtilityCore.Tests.dll";
-        var assembly = Assembly.LoadFrom(assemblyPath);
-        var testFixtures = assembly.GetTypes().Where(t => t.GetCustomAttributes(typeof(TestFixtureAttribute)).Any());
-
-        int testsRun = 0;
-        int testsPassed = 0;
-
-        foreach (var fixture in testFixtures)
+        public static void Main(string[] args)
         {
-            Console.WriteLine($"[Fixture] {fixture.Name}");
-            var instance = Activator.CreateInstance(fixture);
-            var setupMethod = fixture.GetMethods().FirstOrDefault(m => m.GetCustomAttributes(typeof(SetUpAttribute)).Any());
-            var testMethods = fixture.GetMethods().Where(m => m.GetCustomAttributes(typeof(TestAttribute)).Any());
+            var assemblyPath = args.Length > 0 ? args[0] : "../SE.CunningUtilityCore.Tests/bin/Debug/SE.CunningUtilityCore.Tests.dll";
+            var assembly = Assembly.LoadFrom(assemblyPath);
+            var testFixtures = assembly.GetTypes().Where(t => t.GetCustomAttributes(typeof(TestFixtureAttribute)).Any());
 
-            foreach (var test in testMethods)
+            int testsRun = 0;
+            int testsPassed = 0;
+
+            foreach (var fixture in testFixtures)
             {
-                testsRun++;
-                try
+                Console.WriteLine($"[Fixture] {fixture.Name}");
+                var instance = Activator.CreateInstance(fixture);
+                var setupMethod = fixture.GetMethods().FirstOrDefault(m => m.GetCustomAttributes(typeof(SetUpAttribute)).Any());
+                var testMethods = fixture.GetMethods().Where(m => m.GetCustomAttributes(typeof(TestAttribute)).Any());
+
+                foreach (var test in testMethods)
                 {
-                    setupMethod?.Invoke(instance, null);
-                    test.Invoke(instance, null);
-                    Console.WriteLine($"  [PASS] {test.Name}");
-                    testsPassed++;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine($"  [FAIL] {test.Name}");
-                    Console.WriteLine(e.InnerException?.Message);
-                    Console.WriteLine(e.InnerException?.StackTrace);
+                    testsRun++;
+                    try
+                    {
+                        setupMethod?.Invoke(instance, null);
+                        test.Invoke(instance, null);
+                        Console.WriteLine($"  [PASS] {test.Name}");
+                        testsPassed++;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"  [FAIL] {test.Name}");
+                        Console.WriteLine(e.InnerException?.Message);
+                        Console.WriteLine(e.InnerException?.StackTrace);
+                    }
                 }
             }
-        }
 
-        Console.WriteLine($"\nTests run: {testsRun}, Passed: {testsPassed}, Failed: {testsRun - testsPassed}");
+            Console.WriteLine($"\nTests run: {testsRun}, Passed: {testsPassed}, Failed: {testsRun - testsPassed}");
+        }
     }
 }

@@ -1,4 +1,4 @@
-namespace IngameScript.Core.Scheduler
+namespace IngameScript
 {
     public enum TaskPriority
     {

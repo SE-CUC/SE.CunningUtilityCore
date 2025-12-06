@@ -1,10 +1,8 @@
-﻿using Sandbox.ModAPI.Ingame;
+﻿
+using Sandbox.ModAPI.Ingame;
 using System;
 using System.Collections.Generic;
 using VRage.Game.ModAPI.Ingame.Utilities;
-using IngameScript.Core.DI;
-using IngameScript.Core.Configuration;
-using IngameScript.Core.Scheduler;
 
 namespace IngameScript
 {

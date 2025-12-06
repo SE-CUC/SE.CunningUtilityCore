@@ -2,7 +2,7 @@ using System;
 using Sandbox.ModAPI.Ingame;
 using VRage.Game.ModAPI.Ingame.Utilities;
 
-namespace IngameScript.Core.Configuration
+namespace IngameScript
 {
     public class ConfigManager
     {
