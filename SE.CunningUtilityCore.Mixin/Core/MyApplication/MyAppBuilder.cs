@@ -58,15 +58,30 @@ namespace IngameScript
         {
             _beforeBuild.ForEach(action => action(Injector));
 
-            // TODO: Replace with actual implementation
-            // if ((_features & AutoConfigFeatures.Scheduler) != 0) builder = builder.WithScheduler();
-            // if ((_features & AutoConfigFeatures.Commands) != 0) builder = builder.WithCommands();
-            // if ((_features & AutoConfigFeatures.IGC) != 0) builder = builder.WithIGC();
+            if ((_features & AutoConfigFeatures.Commands) != 0) WithCommands();
 
             var app = new MyApp(Injector, _onFirstMainTriggerStart, _onFirstMainTriggerEnd, _onSave, _onError, _onTerminalAction);
 
             _afterBuild.ForEach(action => action(Injector));
             return app;
+        }
+
+        private void WithCommands()
+        {
+            var logger = Injector.GetService<ILogger>();
+            var commandService = new CommandService(logger);
+
+            Injector.AddSingleton<ICommandService>(commandService);
+
+            commandService.RegisterModule(new SystemCommands());
+
+            OnTerminalAction((argument, updateType, inj) =>
+            {
+                var service = inj.GetService<ICommandService>();
+                var echo = inj.GetService<Action<string>>();
+
+                service.Handle(argument, echo);
+            });
         }
     }
 

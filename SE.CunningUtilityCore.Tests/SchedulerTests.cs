@@ -1,8 +1,6 @@
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
-using IngameScript.Core.Scheduler;
-using IngameScript.Tests.Mocks;
 
 namespace IngameScript.Tests
 {
