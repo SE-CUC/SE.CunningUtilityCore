@@ -8,9 +8,30 @@ namespace IngameScript
     {
         private readonly MyGridProgram _gridProgram;
 
+        private static WaitService _instance = null;
+
+        public static WaitService Waiter 
+        { 
+            get 
+            {
+                if (_instance == null)
+                {
+                    throw new InvalidOperationException("WaitService has not been initialized. Please initialize it before use.");
+                }
+                return _instance;
+            }
+        }
+
         public WaitService(MyGridProgram gridProgram)
         {
             _gridProgram = gridProgram;
+            _instance = this;
+        }
+
+        protected WaitService(MyGridProgram gridProgram, WaitService instance)
+        {
+            _gridProgram = gridProgram;
+            _instance = instance;
         }
 
         public IEnumerator Wait(TimeSpan duration)

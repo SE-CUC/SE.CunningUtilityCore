@@ -8,9 +8,9 @@ namespace IngameScript
     {
         private class RepeatingTask
         {
-            public IEnumerator Task;
-            public int RepeatDelayTicks;
-            public int TicksUntilRepeat;
+            public Func<IEnumerator> TaskFactory;
+            public long RepeatDelayTicks;
+            public long TicksUntilRepeat;
         }
 
         private readonly List<IEnumerator> _normalPriorityTasks = new List<IEnumerator>();
@@ -46,9 +46,13 @@ namespace IngameScript
             AddTask(RunParallel(tasks), priority);
         }
 
-        public void AddRepeatingTask(IEnumerator task, int repeatDelayTicks, TaskPriority priority = TaskPriority.Normal)
+        public void AddRepeatingTask(Func<IEnumerator> taskFactory, int repeatDelayTicks, TaskPriority priority = TaskPriority.Normal)
         {
-            _repeatingTasks.Add(new RepeatingTask { Task = task, RepeatDelayTicks = repeatDelayTicks, TicksUntilRepeat = 0 });
+            _repeatingTasks.Add(new RepeatingTask { TaskFactory = taskFactory, RepeatDelayTicks = repeatDelayTicks, TicksUntilRepeat = 0 });
+        }
+        public void AddRepeatingTask(Func<IEnumerator> taskFactory, TimeSpan delay, TaskPriority priority = TaskPriority.Normal)
+        {
+            _repeatingTasks.Add(new RepeatingTask { TaskFactory = taskFactory, RepeatDelayTicks = delay.Ticks, TicksUntilRepeat = 0 });
         }
 
         public void Update()
@@ -57,15 +61,19 @@ namespace IngameScript
             {
                 var repeatingTask = _repeatingTasks[i];
                 repeatingTask.TicksUntilRepeat--;
-                if (repeatingTask.TicksUntilRepeat <= 0)
+                if (repeatingTask.TicksUntilRepeat < 0)
                 {
-                    AddTask(repeatingTask.Task);
+                    AddTask(repeatingTask.TaskFactory());
                     repeatingTask.TicksUntilRepeat = repeatingTask.RepeatDelayTicks;
                 }
             }
 
             if (_immediateTask != null)
             {
+                if (_currentTask != null)
+                {
+                    _highPriorityTasks.Insert(0, _currentTask);
+                }
                 _currentTask = _immediateTask;
                 _immediateTask = null;
             }
@@ -97,7 +105,10 @@ namespace IngameScript
         {
             for(int i = 0; i < tasks.Length; i++)
             {
-                yield return tasks[i];
+                while(tasks[i].MoveNext())
+                {
+                    yield return tasks[i].Current;
+                }
             }
         }
 

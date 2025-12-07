@@ -10,8 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Core\Command\" />
-    <Folder Include="$(MSBuildThisFileDirectory)IGC\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Schedule\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Core\Configuration\ConfigManager.cs" />
@@ -32,13 +30,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\Command\ICommandModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Command\ICommandService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Command\SystemCommands.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IScheduler.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IWaitService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Scheduler.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TaskPriority.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)WaitService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)README.md" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Scheduler\IScheduler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Scheduler\IWaitService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Scheduler\Scheduler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Scheduler\TaskPriority.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Scheduler\WaitService.cs" />
   </ItemGroup>
 </Project>
