@@ -116,7 +116,7 @@ namespace IngameScript.Tests
         public void RepeatingTask_RunsAtInterval()
         {
             var executionOrder = new List<int>();
-            _scheduler.AddRepeatingTask(SimpleTask(executionOrder, 1), 3);
+            _scheduler.AddRepeatingTask(() => SimpleTask(executionOrder, 1), 3);
 
             _scheduler.Update(); // Tick 1 - Task runs
             Assert.AreEqual(1, executionOrder.Count);
